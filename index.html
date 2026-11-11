@@ -158,6 +158,7 @@ td .kr{color:var(--muted);font-size:13px}
 td .chip{margin-top:5px;display:inline-block;font-size:11px;font-weight:600;color:var(--orange-dark);background:var(--cream);padding:2px 8px;border-radius:999px}
 td.price{white-space:nowrap;color:var(--ink)}
 td.price.tbd{color:var(--muted)}
+.take h2{margin:0 0 12px !important}
 .take p{margin:0 0 10px;font-size:15px;line-height:1.65;color:var(--body)}
 .pair{background:var(--green-tint);border-radius:14px;padding:16px 18px}
 .pair h2{font-family:Inter,sans-serif;font-size:15px;font-weight:600;color:var(--green-ink);letter-spacing:0;margin:0 0 8px}
@@ -201,7 +202,7 @@ var SITE = {
   name: 'JonMatTang in Seoul',
   eyebrow: 'Seoul food, cafés & spaces — in English',
   headline: 'Where Seoul locals actually experience — barely on Naver Maps.',
-  lede: 'JonMatTang (존맛탱) is Korean slang for “so good it’s unreal.” It’s what Koreans say after the first bite of something amazing, and it’s the only bar a place has to clear to make it onto this site. Checked against hundreds of Korean reviews, explained the way a visitor needs.',
+  lede: 'Checked against hundreds of Korean reviews, explained the way a visitor needs.',
   about: 'Run by a Seoul local who reviews places for Korean readers on Naver Blog — now in English. #오호oho & #hanzi',
   instagram: 'https://www.instagram.com/'
 };
@@ -762,7 +763,7 @@ var PLACES = [
           '<div class="gallery">' + photos + '</div>' +
         '</section>' +
         '<section class="p-mid" aria-label="Menu and review">' +
-          (p.take ? '<div class="take">' + p.take.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' : '') +
+          (p.take && p.take.length ? '<div class="take"><h2>' + esc(p.takeTitle || 'JMT’s bite') + '</h2>' + p.take.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' : '') +
           (rows ? '<div><h2>' + esc(p.menuTitle || 'What to order') + '</h2><div class="tbl-box"><table>' +
             '<thead><tr><th scope="col">Menu</th><th scope="col">What it is</th><th scope="col">Price</th></tr></thead>' +
             '<tbody>' + rows + '</tbody></table></div></div>' : '') +
