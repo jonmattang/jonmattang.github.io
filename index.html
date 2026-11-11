@@ -54,9 +54,9 @@ button{font:inherit}
 .home-main{flex:999 1 640px;min-width:0;padding:28px 40px 32px;display:flex;flex-direction:column;gap:22px}
 .home-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
 .home-head .navlinks{gap:24px}
-.hero{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px}
+.hero{display:flex;flex-direction:column;align-items:flex-start;gap:14px}
 .hero h1{margin:0;font-family:var(--display);font-weight:800;font-size:44px;line-height:1.05;letter-spacing:-0.03em;color:var(--navy);max-width:804px}
-.hero .lede{margin:0;font-size:15px;line-height:1.55;color:var(--soft);max-width:421px}
+.hero .lede{margin:0;font-size:15px;line-height:1.55;color:var(--soft);max-width:890px;text-align:justify}
 .map-wrap{flex-grow:1;display:flex;flex-direction:column;gap:12px;min-height:0}
 .map-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;min-height:40px}
 .map-bar p{margin:0;font-size:15px;color:var(--soft)}
@@ -143,7 +143,7 @@ a.card:hover{color:var(--ink);border-color:var(--ink)}
 .spoons .fill svg{fill:var(--orange)}
 .rating .score{font-size:15px;font-weight:600;color:var(--ink)}
 .rating .of{font-weight:400;color:var(--muted)}
-.p-over .lead{margin:0;font-size:17px;line-height:1.6;color:var(--body)}
+.p-over .lead{margin:0;font-size:17px;line-height:1.6;color:var(--body);text-align:justify;hyphens:auto}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .gallery .photo{aspect-ratio:var(--photo-ratio);border-radius:14px}
 .gallery .photo.big{grid-column:1/-1;border-radius:16px;font-size:14px}
@@ -201,7 +201,7 @@ var SITE = {
   name: 'JonMatTang in Seoul',
   eyebrow: 'Seoul food, cafés & spaces — in English',
   headline: 'Where Seoul locals actually experience — barely on Naver Maps.',
-  lede: 'JonMatTang (존맛탱) is Korean slang for “so good it’s unreal.” It’s what Koreans say after the first bite of something amazing, and it’s the only bar a place has to clear to make it onto this site. Checked against hundreds of Korean reviews, explained the way a visitor needs.',
+  lede: 'Checked against hundreds of Korean reviews, explained the way a visitor needs.',
   about: 'Run by a Seoul local who reviews places for Korean readers on Naver Blog — now in English. #오호oho & #hanzi',
   instagram: 'https://www.instagram.com/'
 };
