@@ -120,7 +120,8 @@ a.card:hover{color:var(--ink);border-color:var(--ink)}
 .card .kind{font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--green)}
 .card .name{font-family:var(--display);font-weight:800;font-size:28px;line-height:1;letter-spacing:-0.02em}
 .card .name .kr{font-family:var(--kr);font-weight:400;font-size:15px;color:var(--muted);letter-spacing:0;margin-left:8px}
-.card .pitch{font-size:14px;line-height:1.5;color:var(--body)}
+.card .pitch{font-size:14px;line-height:1.5;color:var(--body);display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.mini .summary{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .card .order{font-size:13px;line-height:1.45;background:var(--cream);border-radius:9px;padding:8px 10px}
 .card .tips{font-size:13px;color:var(--soft)}
 .card .cta{margin-top:auto;font-size:14px;font-weight:600;color:var(--orange)}
@@ -133,6 +134,15 @@ a.card:hover{color:var(--ink);border-color:var(--ink)}
 .p-meta .tag{font-size:13px;padding:4px 10px}
 .p-over h1{margin:0;font-family:var(--display);font-weight:800;font-size:64px;line-height:1;letter-spacing:-0.03em}
 .p-over h1 .kr{font-family:var(--kr);font-weight:400;font-size:24px;color:var(--muted);letter-spacing:0;margin-left:12px}
+.rating{display:flex;align-items:center;gap:10px;margin-top:-4px}
+.spoons{position:relative;display:inline-block;line-height:0}
+.spoons .row{display:flex;gap:4px}
+.spoons svg{width:26px;height:26px;flex-shrink:0}
+.spoons .base svg{fill:#D9D2C5}
+.spoons .fill{position:absolute;top:0;left:0;height:100%;overflow:hidden}
+.spoons .fill svg{fill:var(--orange)}
+.rating .score{font-size:15px;font-weight:600;color:var(--ink)}
+.rating .of{font-weight:400;color:var(--muted)}
 .p-over .lead{margin:0;font-size:17px;line-height:1.6;color:var(--body)}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .gallery .photo{aspect-ratio:var(--photo-ratio);border-radius:14px}
@@ -261,13 +271,14 @@ var PLACES = [
   {
     "id": "tanbaek",
     "guide": true,
+    "rating": "3.5",
     "name": "Tanbaek",
     "kr": "탄백",
     "district": "jung",
     "category": "restaurant",
     "type": "Kalguksu",
     "area": "Jeongdong-gil",
-    "pitch": "Clean, gently seasoned kalguksu near the Deoksugung stone-wall road.",
+    "pitch": "",
     "cardOrderLabel": "I tried",
     "cardOrder": "Gom/Yukgaejang/Deulkkae-kalguks, Jeyuk-modum to share",
     "cardTips": "Reservations possible · Busy at lunch · 1F bar, 2F tables",
@@ -339,17 +350,18 @@ var PLACES = [
   {
     "id": "incomplete-table",
     "guide": true,
+    "rating": "4.5",
     "name": "Incomplete Table",
     "kr": "미완성식탁",
     "district": "jongno",
     "category": "cafe",
     "type": "Macarons",
     "area": "Bukchon / Anguk",
-    "pitch": "French macarons made with Korean seasonal ingredients, in an easy-to-miss basement shop.",
+    "pitch": "",
     "cardOrderLabel": "I tried",
     "cardOrder": "Fig wine yogurt, Guanaja Forêt Noire, Hojicha, Jasmine",
     "cardTips": "Basement (B1) · Flavors change often · Gift boxes",
-    "lead": "Incomplete Table is one of my favorite spots in Bukchon. The macarons change with the seasons, so there’s always something new to try. One bite of a seasonal macaron, and your day just got a little sweeter :)",
+    "lead": "",
     "menuTitle": "JMT's order",
     "take": ["Fig, Wine & Yogurt : A bright, refreshing one to start with. I wasn't sure how yogurt and wine would go together, but the fig and yogurt came through more than the wine.", "Guanaja Forêt Noire : A special flavor for the 40th anniversary of Valrhona's Guanaja chocolate. Rich, deep chocolate with cherry confiture inside, and the cherry gives it a fresh, light kick instead of making it heavier.", "Jasmine :  A gentle floral aroma with soft, smooth cream. I ate this one twice, and if I go back for seconds, you know it's good.", "Hojicha : The roasted tea leaves give it a warm, toasty aroma, and the slight bitterness goes perfectly with a cup of tea. One bite, and you can really taste late autumn."],
     "pair": "Perfect for a walk around Bukchon. When your energy dips, one sweet macaron bite and your Bukchon-Anguk-Gyeongbokgung day is complete! Unlike most macaron shops, they use Korean ingredients, so it's a different kind of dessert experience. The flavors change every season, so check @incompletetable on Instagram and come back all year round.",
@@ -409,17 +421,18 @@ var PLACES = [
   {
     "id": "octoberbakery",
     "guide": true,
+    "rating": "4",
     "name": "October bakery",
     "kr": "악토버베이커리",
     "district": "seodaemun",
     "category": "cafe",
     "type": "Bakery",
     "area": "Ewha women univ.",
-    "pitch": "A bright little bakery on the way to Ewha, known for its sandwiches.",
+    "pitch": "",
     "cardOrderLabel": "I tried",
     "cardOrder": "Ham cheese avocado raw bread sandwich, Iced latte",
     "cardTips": "Sandwich Bakery · To-go recommand · Brunch",
-    "lead": "Right on the walk from Ewha Womans University Station to the main gate, this small bakery feels bigger than it is thanks to its high ceilings. Students fill it on weekdays, and for good reason.",
+    "lead": "",
     "menuTitle": "JMT's order",
     "take": ["The big windows that let the sunlight pour in are what make October Bakery special. It's lovely to eat inside and soak up the light and the mood, but if there's no seat, takeout works too. Whatever you do, don't leave without a sandwich.", "Ham, Cheese & Avocado Sandwich on Fresh Milk Bread : A fluffy omelet so thick it's hard to fit in one bite, with avocado, ham and cheese that all go together really well. But honestly, the bread itself was the star.", "Latte : A solid latte that pairs really well with bread. Nothing out of the ordinary, but it's smooth and nutty, and it went perfectly with my sandwich :)"],
     "pair": "Grab a sandwich and take a walk around Ewha’s campus. Don’t miss the ECC, the glass building that sinks into the ground.",
@@ -473,6 +486,7 @@ var PLACES = [
   {
     "id": "tftcoffee",
     "guide": true,
+    "rating": "4",
     "name": "TFT Coffee Roasters",
     "kr": "티에프티커피로스터스",
     "district": "yeongdeungpo",
@@ -578,6 +592,18 @@ var PLACES = [
     var inner = ph.src ? '<img src="' + esc(ph.src) + '" alt="' + esc(ph.alt || ph.label) + '">' : esc(ph.label);
     return '<div class="photo ' + (cls || '') + (ph.src ? ' has-img' : '') + '">' + inner + '</div>';
   }
+  var SPOON = '<svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="7.5" rx="6.2" ry="7"/><rect x="10.4" y="12.5" width="3.2" height="11" rx="1.6"/></svg>';
+  function spoons(value) {
+    var r = parseFloat(value);
+    if (isNaN(r)) return '';
+    r = Math.max(0, Math.min(5, Math.round(r * 2) / 2));   // 0 to 5, in halves
+    var row = SPOON + SPOON + SPOON + SPOON + SPOON;
+    var w = Math.floor(r) * 30 + (r % 1) * 26;               // 26px spoon + 4px gap
+    return '<div class="rating" role="img" aria-label="Taste rating: ' + r + ' out of 5">' +
+      '<span class="spoons"><span class="row base">' + row + '</span>' +
+      '<span class="row fill" style="width:' + w + 'px">' + row + '</span></span>' +
+      '<span class="score">' + r + ' <span class="of">/ 5</span></span></div>';
+  }
   function brand() { return '<a class="brand" href="#/">' + esc(SITE.name) + '</a>'; }
 
   /* ---------- HOME ---------- */
@@ -612,7 +638,7 @@ var PLACES = [
         '<div class="mini-body">' +
           '<div class="mini-meta"><span class="tag">' + esc(CAT[p.category].label) + '</span><span>' + esc(d.en + ' · ' + p.area) + '</span></div>' +
           '<h3>' + esc(p.name) + '<span class="kr">' + esc(p.kr) + '</span></h3>' +
-          '<p>' + esc(p.pitch) + '</p>' +
+          '<p class="summary">' + esc(p.lead || p.pitch) + '</p>' +
           '<p class="order"><b>' + esc(p.cardOrderLabel || 'Order') + ': </b>' + esc(p.cardOrder) + '</p>' +
           '<div>' + (p.guide ? '<a class="btn-dark" href="#/place/' + p.id + '">Read the full guide</a>' : '<span class="soon">Full guide coming soon</span>') + '</div>' +
         '</div></article>';
@@ -667,7 +693,7 @@ var PLACES = [
       '<div class="card-body">' +
         '<span class="kind">' + esc(p.type + ' · ' + p.area) + '</span>' +
         '<div class="name">' + esc(p.name) + '<span class="kr">' + esc(p.kr) + '</span></div>' +
-        '<span class="pitch">' + esc(p.pitch) + '</span>' +
+        '<span class="pitch">' + esc(p.lead || p.pitch) + '</span>' +
         '<span class="order"><b>' + esc(p.cardOrderLabel || 'Order') + ': </b>' + esc(p.cardOrder) + '</span>' +
         '<span class="tips">' + esc(p.cardTips) + '</span>' +
         (p.guide ? '<span class="cta">Read the full guide →</span>' : '<span class="cta off">Full guide coming soon</span>') +
@@ -731,14 +757,15 @@ var PLACES = [
         '<section class="p-over" aria-label="Overview">' +
           '<div class="p-meta"><span class="tag">' + esc(CAT[p.category].label + ' · ' + p.type) + '</span><span>' + esc(d.en + ' · ' + p.area) + '</span></div>' +
           '<h1>' + esc(p.name) + '<span class="kr">' + esc(p.kr) + '</span></h1>' +
+          spoons(p.rating) +
           '<p class="lead">' + esc(p.lead || p.pitch) + '</p>' +
           '<div class="gallery">' + photos + '</div>' +
         '</section>' +
         '<section class="p-mid" aria-label="Menu and review">' +
+          (p.take ? '<div class="take">' + p.take.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' : '') +
           (rows ? '<div><h2>' + esc(p.menuTitle || 'What to order') + '</h2><div class="tbl-box"><table>' +
             '<thead><tr><th scope="col">Menu</th><th scope="col">What it is</th><th scope="col">Price</th></tr></thead>' +
             '<tbody>' + rows + '</tbody></table></div></div>' : '') +
-          (p.take ? '<div class="take">' + p.take.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' : '') +
           (p.pair ? '<div class="pair"><h2>Pair it with</h2><p>' + esc(p.pair) + '</p></div>' : '') +
         '</section>' +
         '<aside class="check" aria-label="Visitor checklist"><h2>Visitor checklist</h2><dl>' + checks + '</dl>' +
