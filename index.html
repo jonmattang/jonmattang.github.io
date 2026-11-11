@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JonMatTang in Seoul</title>
+<meta name="description" content="Seoul restaurants, cafés, places and lifestyle spots, explained in English by a Seoul local.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+:root{
+  --bg:#FBFAF7; --ink:#1B1B1B; --navy:#0C0141; --body:#33312D; --muted:#5C5A55; --soft:#45433F;
+  --line:#E4E0D7; --line2:#ECE8E0; --border:#CFCAC0;
+  --green:#2F5D50; --green-tint:#E6EFEB; --green-ink:#234A3F; --green-text:#D3DCD8;
+  --orange:#B7410E; --orange-dark:#8A300A; --peach:#F6DCCB; --cream:#FBF4EE;
+  --sand:#EDE8DE; --panel:#F4F1EA; --river:#CFE3EA; --river-ink:#1E4A5A;
+  --display:'Bricolage Grotesque',sans-serif; --photo-ratio:4/5; --kr:'Noto Sans KR',sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,'Noto Sans KR',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--orange)} a:hover{color:var(--orange-dark)}
+button{font:inherit}
+.kr{font-family:var(--kr)}
+.display{font-family:var(--display);letter-spacing:-0.02em}
+.btn-reset{background:none;border:0;padding:0;cursor:pointer;color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+
+/* Shared header */
+.topbar{padding:22px 40px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line)}
+.brand{text-decoration:none;color:var(--ink);font-family:var(--display);font-weight:800;font-size:24px;letter-spacing:-0.02em}
+.brand:hover{color:var(--ink)}
+.navlinks{display:flex;flex-wrap:wrap;align-items:center;gap:20px;font-size:15px;font-weight:500}
+.navlinks a,.navlinks button{color:var(--ink);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+.navlinks .sep{color:#8C877E}
+.navlinks .current{color:var(--muted)}
+
+/* Pills */
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{min-height:36px;padding:0 13px;border-radius:999px;font:500 13px Inter,sans-serif;cursor:pointer;background:#fff;color:var(--ink);border:1px solid var(--border);display:inline-flex;align-items:center;gap:8px}
+.pill[aria-pressed="true"],.pill.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pill .count{font-size:12px;color:var(--muted)}
+.pill.on .count{background:#fff;color:var(--ink);border-radius:999px;padding:1px 7px}
+
+.photo{background:var(--sand);color:#6B6760;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px;font-size:13px;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo.has-img{padding:0;background:var(--sand)}
+.tag{background:var(--green-tint);color:var(--green-ink);padding:3px 9px;border-radius:999px;font-size:12px;font-weight:600}
+.eyebrow{margin:0;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--green)}
+.empty{margin:0;border:1px dashed var(--border);border-radius:14px;padding:22px;color:var(--muted);font-size:15px}
+
+/* ---------- HOME ---------- */
+.home{display:flex;flex-wrap:wrap;min-height:100vh}
+.home-main{flex:999 1 640px;min-width:0;padding:28px 40px 32px;display:flex;flex-direction:column;gap:22px}
+.home-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.home-head .navlinks{gap:24px}
+.hero{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 32px}
+.hero h1{margin:0;font-family:var(--display);font-weight:800;font-size:44px;line-height:1.05;letter-spacing:-0.03em;color:var(--navy);max-width:804px}
+.hero .lede{margin:0;font-size:15px;line-height:1.55;color:var(--soft);max-width:421px}
+.map-wrap{flex-grow:1;display:flex;flex-direction:column;gap:12px;min-height:0}
+.map-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;min-height:40px}
+.map-bar p{margin:0;font-size:15px;color:var(--soft)}
+.map-bar strong{color:var(--orange-dark)}
+.map-box{flex-grow:1;overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;display:flex;align-items:center}
+.map{width:100%;min-width:760px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));grid-template-rows:repeat(7,auto);gap:7px}
+.tile{min-height:64px;padding:8px 4px;border-radius:11px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;cursor:pointer;font-family:Inter,sans-serif;background:#fff;color:var(--ink);border:1px solid #D6D1C7;text-decoration:none}
+.tile:hover{border-color:var(--ink);color:var(--ink)}
+.tile .en{font-size:13px;font-weight:600;line-height:1.2}
+.tile .k{font-family:var(--kr);font-size:11px;color:var(--muted)}
+.tile .badge{margin-top:1px;font-size:10px;font-weight:600;padding:1px 7px;border-radius:999px;background:var(--orange);color:#fff}
+.tile.has{background:var(--peach);border:2px solid var(--orange)}
+.tile.sel{background:var(--ink);color:#fff;border:2px solid var(--ink)}
+.tile.sel .k{color:#D9D6CF}
+.river{grid-column:1/-1;grid-row:5;height:28px;border-radius:999px;background:var(--river);color:var(--river-ink);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;letter-spacing:0.04em}
+.how{margin-top:108px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;background:var(--green);color:#F3F1EC;border-radius:16px;padding:18px 22px}
+.how h2{margin:0 0 4px;font-size:14px;font-weight:600}
+.how p{margin:0;font-size:13px;line-height:1.5;color:var(--green-text)}
+.home-panel{flex:1 1 380px;width:395px;max-width:100%;max-height:100vh;overflow-y:auto;position:sticky;top:0;background:#fff;border-left:1px solid var(--line);padding:28px 28px 24px;display:flex;flex-direction:column;gap:18px}
+.home-panel h2{margin:0;font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-0.02em}
+.home-panel .sub{margin:4px 0 0;font-size:14px;color:var(--muted)}
+.mini{border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;gap:14px;background:#fff}
+.mini .photo{flex:0 0 104px;height:auto;align-self:flex-start;aspect-ratio:var(--photo-ratio);border-radius:10px;font-size:11px;padding:8px}
+.mini .photo.has-img{padding:0}
+.mini-body{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px}
+.mini-meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:12px;font-weight:600;color:var(--muted)}
+.mini h3{margin:0;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.01em}
+.mini h3 .kr{font-family:var(--kr);font-weight:400;font-size:14px;color:var(--muted);margin-left:6px}
+.mini p{margin:0;font-size:14px;line-height:1.5;color:var(--body)}
+.mini .order{font-size:13px;line-height:1.45}
+.order b{color:var(--orange-dark);font-weight:600}
+.btn-dark{display:inline-flex;align-items:center;min-height:40px;padding:0 14px;border-radius:9px;background:var(--ink);color:#fff;font-weight:600;font-size:14px;text-decoration:none}
+.btn-dark:hover{color:#fff;background:#000}
+.soon{display:inline-flex;align-items:center;min-height:40px;font-size:13px;color:var(--muted)}
+.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.panel-toggle{flex-shrink:0;min-height:36px;padding:0 12px;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--ink);font:500 13px Inter,sans-serif;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.panel-toggle:hover{border-color:var(--ink)}
+.panel-rail{flex:0 0 64px;position:sticky;top:0;height:100vh;border-left:1px solid var(--line);background:#fff;display:flex;justify-content:center;padding-top:28px}
+.panel-rail button{writing-mode:vertical-rl;display:inline-flex;align-items:center;gap:10px;padding:16px 9px;border-radius:999px;border:1px solid var(--border);background:#fff;color:var(--ink);font:600 13px Inter,sans-serif;letter-spacing:0.04em;cursor:pointer;height:fit-content}
+.panel-rail button:hover{border-color:var(--ink)}
+.panel-rail .n{writing-mode:horizontal-tb;background:var(--orange);color:#fff;border-radius:999px;padding:2px 7px;font-size:11px}
+.panel-rail svg,.panel-toggle svg{width:14px;height:14px;flex-shrink:0}
+.about{margin:auto 0 0;padding-top:16px;border-top:1px solid var(--line2);font-size:13px;line-height:1.55;color:var(--muted)}
+
+/* ---------- DISTRICT ---------- */
+.d-hero{padding:40px 40px 28px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px 40px}
+.d-hero .left{display:flex;flex-direction:column;gap:12px;max-width:760px}
+.d-hero h1{margin:0;font-family:var(--display);font-weight:800;font-size:72px;line-height:1;letter-spacing:-0.03em}
+.d-hero .kname{font-family:var(--kr);font-size:28px;color:var(--muted);margin-left:14px}
+.d-hero p.intro{margin:0;font-size:17px;line-height:1.6;color:var(--body)}
+.d-hero .pills{gap:8px}
+.d-hero .pill{min-height:40px;padding:0 14px;font-size:14px}
+.d-main{padding:0 40px 56px;display:flex;flex-direction:column;gap:40px}
+.d-sec{display:flex;flex-direction:column;gap:18px;border-top:1px solid #DDD9D0;padding-top:28px;scroll-margin-top:16px}
+.d-sec h2{margin:0;font-family:var(--display);font-weight:700;font-size:30px;letter-spacing:-0.02em}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;max-width:1100px}
+.card{border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;text-decoration:none;color:var(--ink)}
+a.card:hover{color:var(--ink);border-color:var(--ink)}
+.card .photo{aspect-ratio:var(--photo-ratio)}
+.card-body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:9px;flex-grow:1}
+.card .kind{font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--green)}
+.card .name{font-family:var(--display);font-weight:800;font-size:28px;line-height:1;letter-spacing:-0.02em}
+.card .name .kr{font-family:var(--kr);font-weight:400;font-size:15px;color:var(--muted);letter-spacing:0;margin-left:8px}
+.card .pitch{font-size:14px;line-height:1.5;color:var(--body)}
+.card .order{font-size:13px;line-height:1.45;background:var(--cream);border-radius:9px;padding:8px 10px}
+.card .tips{font-size:13px;color:var(--soft)}
+.card .cta{margin-top:auto;font-size:14px;font-weight:600;color:var(--orange)}
+.card .cta.off{color:var(--muted)}
+
+/* ---------- PLACE ---------- */
+.p-wrap{flex-grow:1;padding:28px 40px 32px;display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}
+.p-over{flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:16px}
+.p-meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;font-weight:600;color:var(--muted)}
+.p-meta .tag{font-size:13px;padding:4px 10px}
+.p-over h1{margin:0;font-family:var(--display);font-weight:800;font-size:64px;line-height:1;letter-spacing:-0.03em}
+.p-over h1 .kr{font-family:var(--kr);font-weight:400;font-size:24px;color:var(--muted);letter-spacing:0;margin-left:12px}
+.p-over .lead{margin:0;font-size:17px;line-height:1.6;color:var(--body)}
+.gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.gallery .photo{aspect-ratio:var(--photo-ratio);border-radius:14px}
+.gallery .photo.big{grid-column:1/-1;border-radius:16px;font-size:14px}
+.p-mid{flex:999 1 480px;min-width:0;display:flex;flex-direction:column;gap:26px}
+.p-mid h2{margin:0;font-family:var(--display);font-weight:700;font-size:26px;letter-spacing:-0.02em}
+.tbl-box{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:460px}
+th{background:var(--panel);text-align:left;padding:11px 14px;font-weight:600}
+td{padding:12px 14px;vertical-align:top;border-top:1px solid var(--line2);line-height:1.5;color:var(--body)}
+td .m{font-weight:600;color:var(--ink)}
+td .kr{color:var(--muted);font-size:13px}
+td .chip{margin-top:5px;display:inline-block;font-size:11px;font-weight:600;color:var(--orange-dark);background:var(--cream);padding:2px 8px;border-radius:999px}
+td.price{white-space:nowrap;color:var(--ink)}
+td.price.tbd{color:var(--muted)}
+.take p{margin:0 0 10px;font-size:15px;line-height:1.65;color:var(--body)}
+.pair{background:var(--green-tint);border-radius:14px;padding:16px 18px}
+.pair h2{font-family:Inter,sans-serif;font-size:15px;font-weight:600;color:var(--green-ink);letter-spacing:0;margin:0 0 8px}
+.pair p{margin:0;font-size:15px;line-height:1.6;color:#1F3D35}
+.check{flex:1 1 300px;max-width:360px;min-width:0;background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:16px}
+.check h2{margin:0;font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-0.01em}
+.check dl{margin:0;display:flex;flex-direction:column;gap:10px;font-size:14px}
+.check dl div{display:flex;flex-direction:column;gap:2px;border-bottom:1px solid var(--line2);padding-bottom:9px}
+.check dl div:last-child{border-bottom:0;padding-bottom:0}
+.check dt{font-weight:600;color:var(--green)}
+.check dd{margin:0;line-height:1.45;white-space:pre-line}
+.btn-map{display:inline-flex;align-items:center;justify-content:center;min-height:46px;border-radius:10px;background:var(--ink);color:#fff;font-weight:600;font-size:15px;text-decoration:none}
+.btn-map:hover{color:#fff;background:#000}
+.check .stamp{margin:0;font-size:12px;line-height:1.5;color:var(--muted)}
+.p-foot{padding:8px 40px 32px}
+
+@media (max-width:760px){
+  .topbar,.home-main,.d-hero,.d-main,.p-wrap,.p-foot{padding-left:20px;padding-right:20px}
+  .hero h1{font-size:34px}
+  .d-hero h1{font-size:52px}
+  .p-over h1{font-size:48px}
+  .how{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .home-panel{position:static;max-height:none;border-left:0;border-top:1px solid var(--line)}
+  .panel-rail{position:static;height:auto;flex:1 1 100%;border-left:0;border-top:1px solid var(--line);padding:12px 20px;justify-content:flex-start}
+  .panel-rail button{writing-mode:horizontal-tb}
+  .check{max-width:none}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* =====================================================================
+   TEMPLATE — build_site.R fills in PLACES from Google Sheets.
+   Edit places in the Google Sheet, not here.
+   You can still edit SITE, CATEGORIES and DISTRICTS below by hand.
+   ===================================================================== */
+
+var SITE = {
+  name: 'JonMatTang in Seoul',
+  eyebrow: 'Seoul food, cafés & spaces — in English',
+  headline: 'Where Seoul locals actually experience — barely on Google Maps.',
+  lede: 'Checked against hundreds of Korean reviews, explained the way a visitor needs.',
+  about: 'Run by a Seoul local who reviews places for Korean readers on Naver Blog — now in English. #seoulooho',
+  instagram: 'https://www.instagram.com/'
+};
+
+var CATEGORIES = [
+  { id: 'restaurant', label: 'Restaurant' },
+  { id: 'cafe',       label: 'Cafe & Dessert' },
+  { id: 'place',      label: 'Place' },
+  { id: 'lifestyle',  label: 'Lifestyle' }
+];
+
+/* Tile map: col 1-7, row 1-7 (row 5 is the Han River) */
+var DISTRICTS = [
+  { id: 'eunpyeong',    en: 'Eunpyeong-gu',    kr: '은평구',   col: 2, row: 1 },
+  { id: 'gangbuk',      en: 'Gangbuk-gu',      kr: '강북구',   col: 4, row: 1 },
+  { id: 'dobong',       en: 'Dobong-gu',       kr: '도봉구',   col: 5, row: 1 },
+  { id: 'nowon',        en: 'Nowon-gu',        kr: '노원구',   col: 6, row: 1 },
+  { id: 'seodaemun',    en: 'Seodaemun-gu',    kr: '서대문구', col: 2, row: 2 },
+  { id: 'jongno',       en: 'Jongno-gu',       kr: '종로구',   col: 3, row: 2,
+    intro: 'Palaces, hanok alleys and old Seoul: Gyeongbokgung, Bukchon, Insadong and Ikseon-dong. Browse each spot below, then tap in for the full guide.' },
+  { id: 'seongbuk',     en: 'Seongbuk-gu',     kr: '성북구',   col: 4, row: 2 },
+  { id: 'dongdaemun',   en: 'Dongdaemun-gu',   kr: '동대문구', col: 5, row: 2 },
+  { id: 'jungnang',     en: 'Jungnang-gu',     kr: '중랑구',   col: 6, row: 2 },
+  { id: 'mapo',         en: 'Mapo-gu',         kr: '마포구',   col: 1, row: 3 },
+  { id: 'jung',         en: 'Jung-gu',         kr: '중구',     col: 3, row: 3,
+    intro: 'The old heart of Seoul: City Hall, Deoksugung Palace, Myeong-dong and Namdaemun Market. Browse each spot below, then tap in for the full guide.' },
+  { id: 'seongdong',    en: 'Seongdong-gu',    kr: '성동구',   col: 4, row: 3 },
+  { id: 'gwangjin',     en: 'Gwangjin-gu',     kr: '광진구',   col: 5, row: 3 },
+  { id: 'yongsan',      en: 'Yongsan-gu',      kr: '용산구',   col: 3, row: 4 },
+  { id: 'gangseo',      en: 'Gangseo-gu',      kr: '강서구',   col: 1, row: 6 },
+  { id: 'yangcheon',    en: 'Yangcheon-gu',    kr: '양천구',   col: 2, row: 6 },
+  { id: 'yeongdeungpo', en: 'Yeongdeungpo-gu', kr: '영등포구', col: 3, row: 6 },
+  { id: 'dongjak',      en: 'Dongjak-gu',      kr: '동작구',   col: 4, row: 6 },
+  { id: 'seocho',       en: 'Seocho-gu',       kr: '서초구',   col: 5, row: 6 },
+  { id: 'gangnam',      en: 'Gangnam-gu',      kr: '강남구',   col: 6, row: 6 },
+  { id: 'gangdong',     en: 'Gangdong-gu',     kr: '강동구',   col: 7, row: 6 },
+  { id: 'guro',         en: 'Guro-gu',         kr: '구로구',   col: 2, row: 7 },
+  { id: 'geumcheon',    en: 'Geumcheon-gu',    kr: '금천구',   col: 3, row: 7 },
+  { id: 'gwanak',       en: 'Gwanak-gu',       kr: '관악구',   col: 4, row: 7 },
+  { id: 'songpa',       en: 'Songpa-gu',       kr: '송파구',   col: 7, row: 7 }
+];
+
+var PLACES = [
+  {
+    "id": "tanbaek",
+    "guide": true,
+    "name": "Tanbaek",
+    "kr": "탄백",
+    "district": "jung",
+    "category": "restaurant",
+    "type": "Kalguksu",
+    "area": "Jeongdong-gil",
+    "pitch": "Clean, gently seasoned kalguksu near the Deoksugung stone-wall road.",
+    "cardOrderLabel": "I tried",
+    "cardOrder": "Gom/Yukgaejang/Deulkkae-kalguks, Jeyuk-modum to share",
+    "cardTips": "Reservations possible · Busy at lunch · 1F bar, 2F tables",
+    "lead": "Warm kalguksu after a late-autumn walk on Jeongdong-gil. Kalguksu = Korean knife-cut noodles in a hot, comforting broth.",
+    "menuTitle": "JMT's order",
+    "take": ["Tanbaek does a light, gentle version of kalguksu — the kind you can finish without feeling heavy. If you visit, order the gom-kalguksu and the jeyuk-modum to share."],
+    "pair": "A walk along the Deoksugung stone-wall road (Deoksugung Doldam-gil & Jeongdong gil) before or after - best in autumn & winter when the ginkgo trees turn yellow.",
+    "mapUrl": "https://map.naver.com/p/search/%ED%83%84%EB%B0%B1",
+    "lastChecked": "2026. 02. 28.",
+    "photos": [
+      {
+        "label": "[PHOTO 1: Tanbaek]",
+        "src": "images/tanbaek-1.jpg",
+        "alt": "Tanbaek photo 1"
+      },
+      {
+        "label": "[PHOTO 2: Tanbaek]",
+        "src": "images/tanbaek-2.jpg",
+        "alt": "Tanbaek photo 2"
+      },
+      {
+        "label": "[PHOTO 3: Tanbaek]",
+        "src": "images/tanbaek-3.jpg",
+        "alt": "Tanbaek photo 3"
+      }
+    ],
+    "menu": [
+      {
+        "en": "Gom-kalguksu",
+        "kr": "곰칼국수",
+        "desc": "Knife-cut noodles in rich beef bone broth. Mild, not spicy.",
+        "price": "₩14,000",
+        "chip": "My pick"
+      },
+      {
+        "en": "Yukgaejang-kalguksu",
+        "kr": "육개장칼국수",
+        "desc": "Knife-cut noodles in spicy shredded beef & vegetable soup.",
+        "price": "₩15,000",
+        "chip": ""
+      },
+      {
+        "en": "Deulkkae-kalguksu",
+        "kr": "들깨칼국수",
+        "desc": "Knife-cut noodles in nutty, creamy perilla seed soup.",
+        "price": "₩16,000",
+        "chip": ""
+      },
+      {
+        "en": "Jeyuk-modum",
+        "kr": "제육모둠",
+        "desc": "Assorted pork platter with mushroom rice.",
+        "price": "₩22,000",
+        "chip": "To share"
+      }
+    ],
+    "checklist": [
+      ["Location", "37 Jeongdong-gil, Jung-gu, Seoul (1–2F)"],
+      ["Getting there", "[X]-min walk from City Hall Station, Exit [X]"],
+      ["Hours", ""],
+      ["Reservations", "Possible (HOW: Catch Table)"],
+      ["Waiting", "Lines from about 11:30(Lunch time start) on weekdays. Book ahead or go early."],
+      ["Seating", "1F bar seats, 2F tables"],
+      ["Solo-friendly", "Possible (The 1F bar may suit solo diners)"],
+      ["English menu", "X"],
+      ["Foreign cards", "Possible"]
+    ]
+  },
+  {
+    "id": "incomplete-table",
+    "guide": true,
+    "name": "Incomplete Table",
+    "kr": "미완성식탁",
+    "district": "jongno",
+    "category": "cafe",
+    "type": "Macarons",
+    "area": "Bukchon / Anguk",
+    "pitch": "French macarons made with Korean seasonal ingredients, in an easy-to-miss basement shop.",
+    "cardOrderLabel": "I tried",
+    "cardOrder": "Fig wine yogurt, Guanaja Forêt Noire, Hojicha, Jasmine",
+    "cardTips": "Basement (B1) · Flavors change often · Gift boxes",
+    "lead": "Incomplete Table is one of my favorite spots in Bukchon. The macarons change with the seasons, so there’s always something new to try. One bite of a seasonal macaron, and your day just got a little sweeter :)",
+    "menuTitle": "JMT's order",
+    "take": ["Fig, Wine & Yogurt : A bright, refreshing one to start with. I wasn't sure how yogurt and wine would go together, but the fig and yogurt came through more than the wine.", "Guanaja Forêt Noire : A special flavor for the 40th anniversary of Valrhona's Guanaja chocolate. Rich, deep chocolate with cherry confiture inside, and the cherry gives it a fresh, light kick instead of making it heavier.", "Jasmine :  A gentle floral aroma with soft, smooth cream. I ate this one twice, and if I go back for seconds, you know it's good.", "Hojicha : The roasted tea leaves give it a warm, toasty aroma, and the slight bitterness goes perfectly with a cup of tea. One bite, and you can really taste late autumn."],
+    "pair": "Perfect for a walk around Bukchon. When your energy dips, one sweet macaron bite and your Bukchon-Anguk-Gyeongbokgung day is complete! Unlike most macaron shops, they use Korean ingredients, so it's a different kind of dessert experience. The flavors change every season, so check @incompletetable on Instagram and come back all year round.",
+    "mapUrl": "https://naver.me/FlZnZdV8",
+    "lastChecked": "2026. 11. 05.",
+    "photos": [
+      {
+        "label": "[PHOTO 1: Incomplete Table]",
+        "src": "images/incompletetable-1.jpg",
+        "alt": "Incomplete Table photo 1"
+      },
+      {
+        "label": "[PHOTO 2: Incomplete Table]",
+        "src": "images/incompletetable-2.jpg",
+        "alt": "Incomplete Table photo 2"
+      },
+      {
+        "label": "[PHOTO 3: Incomplete Table]",
+        "src": "images/incompletetable-3.jpg",
+        "alt": "Incomplete Table photo 3"
+      }
+    ],
+    "menu": [
+      {
+        "en": "Macron",
+        "kr": "마카롱",
+        "desc": "Korean seasonal ingredients macron (Fig wine yogurt, Guanaja Forêt Noire, Hojicha, Jasmine etc.)",
+        "price": "₩3,200~₩3,500",
+        "chip": "My pick"
+      },
+      {
+        "en": "Silver Needle",
+        "kr": "백호은침",
+        "desc": "A clean, elegant white tea with a soft floral aroma.",
+        "price": "₩8,500",
+        "chip": ""
+      },
+      {
+        "en": "Vanila Latte",
+        "kr": "바닐라라떼",
+        "desc": "A latte made with rich vanilla syrup, nutty and smooth.",
+        "price": "₩6,300",
+        "chip": ""
+      }
+    ],
+    "checklist": [
+      ["Location", ""],
+      ["Getting there", "[X]-min walk from City Hall Station, Exit [X]"],
+      ["Reservations", "X"],
+      ["Waiting", "At the 12:30~13:00 on everyday. (Only you want to sit and eat in this place)"],
+      ["Seating", "6~8 seats"],
+      ["Solo-friendly", "Possible (The cafe space is little bit small, so I recommand that 1~2 person visit their place)"],
+      ["English menu", "Possible (on the menu, you can see Korean with English together)"],
+      ["Foreign cards", "Possible"]
+    ]
+  },
+  {
+    "id": "octoberbakery",
+    "guide": true,
+    "name": "October bakery",
+    "kr": "악토버베이커리",
+    "district": "seodaemun",
+    "category": "cafe",
+    "type": "Bakery",
+    "area": "Ewha women univ.",
+    "pitch": "A bright little bakery on the way to Ewha, known for its sandwiches.",
+    "cardOrderLabel": "I tried",
+    "cardOrder": "Ham cheese avocado raw bread sandwich, Iced latte",
+    "cardTips": "Sandwich Bakery · To-go recommand · Brunch",
+    "lead": "Right on the walk from Ewha Womans University Station to the main gate, this small bakery feels bigger than it is thanks to its high ceilings. Students fill it on weekdays, and for good reason.",
+    "menuTitle": "JMT's order",
+    "take": ["The big windows that let the sunlight pour in are what make October Bakery special. It's lovely to eat inside and soak up the light and the mood, but if there's no seat, takeout works too. Whatever you do, don't leave without a sandwich.", "Ham, Cheese & Avocado Sandwich on Fresh Milk Bread : A fluffy omelet so thick it's hard to fit in one bite, with avocado, ham and cheese that all go together really well. But honestly, the bread itself was the star.", "Latte : A solid latte that pairs really well with bread. Nothing out of the ordinary, but it's smooth and nutty, and it went perfectly with my sandwich :)"],
+    "pair": "Grab a sandwich and take a walk around Ewha’s campus. Don’t miss the ECC, the glass building that sinks into the ground.",
+    "mapUrl": "https://map.naver.com/p/entry/place/1644496773?placePath=%2Fhome%3Ffrom%3Dmap%26fromPanelNum%3D1%26additionalHeight%3D76%26timestamp%3D202611111521%26locale%3Dko%26svcName%3Dmap_pcv5&c=15.00,0,0,0,dh",
+    "lastChecked": "2026. 10. 19.",
+    "photos": [
+      {
+        "label": "[PHOTO 1: October bakery]",
+        "src": "images/octoberbakery-1.jpg",
+        "alt": "October bakery photo 1"
+      },
+      {
+        "label": "[PHOTO 2: October bakery]",
+        "src": "images/octoberbakery-2.jpg",
+        "alt": "October bakery photo 2"
+      },
+      {
+        "label": "[PHOTO 3: October bakery]",
+        "src": "images/octoberbakery-3.jpg",
+        "alt": "October bakery photo 3"
+      }
+    ],
+    "menu": [
+      {
+        "en": "Ham cheese avocado raw bread sandwich",
+        "kr": "햄 치즈 아보카도 생식빵 샌드위치",
+        "desc": "A thick, fluffy omelet with avocado, ham and cheese on soft fresh milk bread.",
+        "price": "₩5,700",
+        "chip": ""
+      },
+      {
+        "en": "Iced latte",
+        "kr": "라떼",
+        "desc": "Smooth and nutty, an easy match for any bread.",
+        "price": "₩4,500",
+        "chip": ""
+      }
+    ],
+    "checklist": [
+      ["Location", ""],
+      ["Getting there", "min walk from Ewha women univ Station, Exit"],
+      ["Hours", ""],
+      ["Reservations", ""],
+      ["Waiting", "Possible"],
+      ["Seating", "About 7 tables of 2 people"],
+      ["Solo-friendly", ""],
+      ["English menu", ""],
+      ["Foreign cards", ""]
+    ]
+  }
+];
+
+/* =====================================================================
+   App — you normally don't need to edit below this line.
+   ===================================================================== */
+(function () {
+  var app = document.getElementById('app');
+  var state = { cat: 'all', district: null, panelOpen: true };
+  // Remember whether the visitor folded the side panel (optional; ignored if storage is blocked)
+  try { if (window.localStorage && localStorage.getItem('jmt-panel') === 'closed') state.panelOpen = false; } catch (e) {}
+  function savePanel() {
+    try { localStorage.setItem('jmt-panel', state.panelOpen ? 'open' : 'closed'); } catch (e) {}
+  }
+  var ICON_RIGHT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>';
+  var ICON_LEFT = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>';
+
+  var DIST = {}; DISTRICTS.forEach(function (d) { DIST[d.id] = d; });
+  var CAT = {}; CATEGORIES.forEach(function (c) { CAT[c.id] = c; });
+  var PLACE = {}; PLACES.forEach(function (p) { PLACE[p.id] = p; });
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+  }
+  function placesIn(districtId) { return PLACES.filter(function (p) { return p.district === districtId; }); }
+  function plural(n, word) { return n + ' ' + word + (n === 1 ? '' : 's'); }
+  function photo(ph, cls) {
+    ph = ph || { label: '[PHOTO]' };
+    var inner = ph.src ? '<img src="' + esc(ph.src) + '" alt="' + esc(ph.alt || ph.label) + '">' : esc(ph.label);
+    return '<div class="photo ' + (cls || '') + (ph.src ? ' has-img' : '') + '">' + inner + '</div>';
+  }
+  function brand() { return '<a class="brand" href="#/">' + esc(SITE.name) + '</a>'; }
+
+  /* ---------- HOME ---------- */
+  function renderHome() {
+    var counts = {};
+    PLACES.forEach(function (p) { counts[p.district] = (counts[p.district] || 0) + 1; });
+
+    var tiles = DISTRICTS.map(function (d) {
+      var n = counts[d.id] || 0;
+      var pos = 'grid-column:' + d.col + ';grid-row:' + d.row;
+      var inner = '<span class="en">' + esc(d.en) + '</span><span class="k">' + esc(d.kr) + '</span>' +
+        (n ? '<span class="badge">' + plural(n, 'spot') + '</span>' : '');
+      if (n) {
+        return '<a class="tile has" style="' + pos + '" href="#/district/' + d.id + '" aria-label="' + esc(d.en + ', ' + plural(n, 'place')) + '">' + inner + '</a>';
+      }
+      var sel = state.district === d.id;
+      return '<button type="button" class="tile' + (sel ? ' sel' : '') + '" style="' + pos + '" data-action="district" data-id="' + d.id + '" aria-pressed="' + sel + '" aria-label="' + esc(d.en + ', no places yet') + '">' + inner + '</button>';
+    }).join('');
+
+    var items = PLACES.filter(function (p) {
+      return (state.cat === 'all' || p.category === state.cat) && (!state.district || p.district === state.district);
+    });
+    var selD = state.district ? DIST[state.district] : null;
+
+    var filterBtns = [{ id: 'all', label: 'All' }].concat(CATEGORIES).map(function (c) {
+      return '<button type="button" class="pill" data-action="cat" data-cat="' + c.id + '" aria-pressed="' + (state.cat === c.id) + '">' + esc(c.label) + '</button>';
+    }).join('');
+
+    var list = items.length ? items.map(function (p) {
+      var d = DIST[p.district];
+      return '<article class="mini">' + photo(p.photos && p.photos[0]) +
+        '<div class="mini-body">' +
+          '<div class="mini-meta"><span class="tag">' + esc(CAT[p.category].label) + '</span><span>' + esc(d.en + ' · ' + p.area) + '</span></div>' +
+          '<h3>' + esc(p.name) + '<span class="kr">' + esc(p.kr) + '</span></h3>' +
+          '<p>' + esc(p.pitch) + '</p>' +
+          '<p class="order"><b>' + esc(p.cardOrderLabel || 'Order') + ': </b>' + esc(p.cardOrder) + '</p>' +
+          '<div>' + (p.guide ? '<a class="btn-dark" href="#/place/' + p.id + '">Read the full guide</a>' : '<span class="soon">Full guide coming soon</span>') + '</div>' +
+        '</div></article>';
+    }).join('') : '<p class="empty" style="text-align:center;padding:40px 20px">No guides here yet — new places are added every week.</p>';
+
+    app.innerHTML =
+      '<div class="home">' +
+        '<main class="home-main">' +
+          '<header class="home-head">' + brand() +
+            '<nav class="navlinks" aria-label="Main">' +
+              '<button type="button" class="btn-reset" data-action="jump" data-target="map">Map</button>' +
+              '<button type="button" class="btn-reset" data-action="jump" data-target="how">How to use</button>' +
+              '<button type="button" class="btn-reset" data-action="jump" data-target="about">About</button>' +
+              '<a href="' + esc(SITE.instagram) + '" target="_blank" rel="noopener">Instagram</a>' +
+            '</nav></header>' +
+          '<section class="hero"><div style="display:flex;flex-direction:column;gap:10px">' +
+            '<p class="eyebrow">' + esc(SITE.eyebrow) + '</p><h1>' + esc(SITE.headline) + '</h1></div>' +
+            '<p class="lede">' + esc(SITE.lede) + '</p></section>' +
+          '<section id="map" class="map-wrap" aria-label="Seoul district map">' +
+            '<div class="map-bar"><p>Pick a district (gu). <strong>Orange</strong> districts open their own guide page.</p>' +
+              (state.district ? '<button type="button" class="pill" data-action="clear" style="min-height:40px;padding:0 16px;font-size:14px">Show all of Seoul</button>' : '') +
+            '</div>' +
+            '<div class="map-box"><div class="map" role="group" aria-label="Seoul districts">' + tiles +
+              '<div class="river" aria-hidden="true">Han River · 한강</div></div></div>' +
+          '</section>' +
+          '<section id="how" class="how" aria-label="How to use">' +
+            '<div><h2>What to order</h2><p>Korean names + plain English</p></div>' +
+            '<div><h2>How to get in</h2><p>Booking, lines, best time</p></div>' +
+            '<div><h2>Visitor checklist</h2><p>English menu, cards, solo seats</p></div>' +
+            '<div><h2>Finding it</h2><p>Station exit + Naver Map link</p></div>' +
+          '</section>' +
+        '</main>' +
+        (state.panelOpen
+          ? '<aside id="places-panel" class="home-panel" aria-label="Places">' +
+              '<div class="panel-head"><div><h2>' + esc(selD ? 'Places in ' + selD.en : 'All places in Seoul') + '</h2><p class="sub">' + plural(items.length, 'place') + '</p></div>' +
+                '<button type="button" class="panel-toggle" data-action="toggle-panel" aria-expanded="true" aria-controls="places-panel">Hide' + ICON_RIGHT + '</button></div>' +
+              '<div class="pills" role="group" aria-label="Filter by category">' + filterBtns + '</div>' +
+              '<div style="display:flex;flex-direction:column;gap:14px">' + list + '</div>' +
+              '<p id="about" class="about">' + esc(SITE.about) + '</p>' +
+            '</aside>'
+          : '<div class="panel-rail">' +
+              '<button type="button" data-action="toggle-panel" aria-expanded="false" aria-label="Show places list (' + plural(items.length, 'place') + ')">' +
+                ICON_LEFT + 'Places<span class="n">' + items.length + '</span></button>' +
+            '</div>') +
+      '</div>';
+    document.title = SITE.name;
+  }
+
+  /* ---------- DISTRICT ---------- */
+  function card(p) {
+    var inner = photo(p.photos && p.photos[0]) +
+      '<div class="card-body">' +
+        '<span class="kind">' + esc(p.type + ' · ' + p.area) + '</span>' +
+        '<div class="name">' + esc(p.name) + '<span class="kr">' + esc(p.kr) + '</span></div>' +
+        '<span class="pitch">' + esc(p.pitch) + '</span>' +
+        '<span class="order"><b>' + esc(p.cardOrderLabel || 'Order') + ': </b>' + esc(p.cardOrder) + '</span>' +
+        '<span class="tips">' + esc(p.cardTips) + '</span>' +
+        (p.guide ? '<span class="cta">Read the full guide →</span>' : '<span class="cta off">Full guide coming soon</span>') +
+      '</div>';
+    return p.guide
+      ? '<a class="card" href="#/place/' + p.id + '" aria-label="' + esc(p.name + ' — read the full guide') + '">' + inner + '</a>'
+      : '<article class="card" aria-label="' + esc(p.name) + '">' + inner + '</article>';
+  }
+
+  function renderDistrict(d) {
+    var here = placesIn(d.id);
+    var chips = CATEGORIES.map(function (c) {
+      var n = here.filter(function (p) { return p.category === c.id; }).length;
+      return '<button type="button" class="pill' + (n ? ' on' : '') + '" data-action="jump" data-target="sec-' + c.id + '">' + esc(c.label) + ' <span class="count">' + n + '</span></button>';
+    }).join('');
+    var sections = CATEGORIES.map(function (c) {
+      var ps = here.filter(function (p) { return p.category === c.id; });
+      return '<section id="sec-' + c.id + '" class="d-sec"><h2>' + esc(c.label) + '</h2>' +
+        (ps.length ? '<div class="cards">' + ps.map(card).join('') + '</div>'
+                   : '<p class="empty">No ' + esc(c.label) + ' guides in ' + esc(d.en) + ' yet.</p>') +
+        '</section>';
+    }).join('');
+
+    app.innerHTML =
+      '<header class="topbar">' + brand() +
+        '<nav class="navlinks" aria-label="Breadcrumb"><a href="#/">Seoul map</a><span class="sep" aria-hidden="true">/</span><span class="current" aria-current="page">' + esc(d.en) + '</span></nav>' +
+      '</header>' +
+      '<section class="d-hero"><div class="left">' +
+        '<p class="eyebrow">District guide</p>' +
+        '<h1>' + esc(d.en) + '<span class="kname">' + esc(d.kr) + '</span></h1>' +
+        '<p class="intro">' + esc(d.intro || 'Browse each spot below, then tap in for the full guide.') + '</p>' +
+      '</div><nav class="pills" aria-label="Jump to category">' + chips + '</nav></section>' +
+      '<main class="d-main">' + sections + '</main>';
+    document.title = d.en + ' — ' + SITE.name;
+  }
+
+  /* ---------- PLACE ---------- */
+  function renderPlace(p) {
+    var d = DIST[p.district];
+    var photos = (p.photos || []).map(function (ph, i) { return photo(ph, i === 0 ? 'big' : ''); }).join('');
+    var rows = (p.menu || []).map(function (m) {
+      var tbd = /^\[.*\]$/.test(m.price);
+      return '<tr><td><div class="m">' + esc(m.en) + '</div><div class="kr">' + esc(m.kr) + '</div>' +
+        (m.chip ? '<div class="chip">' + esc(m.chip) + '</div>' : '') + '</td>' +
+        '<td>' + esc(m.desc) + '</td><td class="price' + (tbd ? ' tbd' : '') + '">' + esc(m.price) + '</td></tr>';
+    }).join('');
+    var checks = (p.checklist || []).map(function (c) {
+      return '<div><dt>' + esc(c[0]) + '</dt><dd>' + esc(c[1]) + '</dd></div>';
+    }).join('');
+
+    app.innerHTML =
+      '<div style="min-height:100vh;display:flex;flex-direction:column">' +
+      '<header class="topbar">' +
+        '<nav class="navlinks" aria-label="Place navigation">' +
+          '<a href="#/">Seoul map</a>' +
+          '<a href="#/district/' + d.id + '">Back to ' + esc(d.en) + '</a>' +
+          (p.mapUrl ? '<a href="' + esc(p.mapUrl) + '" target="_blank" rel="noopener">Naver Map</a>' : '') +
+        '</nav>' + brand() +
+      '</header>' +
+      '<div class="p-wrap">' +
+        '<section class="p-over" aria-label="Overview">' +
+          '<div class="p-meta"><span class="tag">' + esc(CAT[p.category].label + ' · ' + p.type) + '</span><span>' + esc(d.en + ' · ' + p.area) + '</span></div>' +
+          '<h1>' + esc(p.name) + '<span class="kr">' + esc(p.kr) + '</span></h1>' +
+          '<p class="lead">' + esc(p.lead || p.pitch) + '</p>' +
+          '<div class="gallery">' + photos + '</div>' +
+        '</section>' +
+        '<section class="p-mid" aria-label="Menu and review">' +
+          (rows ? '<div><h2>' + esc(p.menuTitle || 'What to order') + '</h2><div class="tbl-box"><table>' +
+            '<thead><tr><th scope="col">Menu</th><th scope="col">What it is</th><th scope="col">Price</th></tr></thead>' +
+            '<tbody>' + rows + '</tbody></table></div></div>' : '') +
+          (p.take ? '<div class="take">' + p.take.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' : '') +
+          (p.pair ? '<div class="pair"><h2>Pair it with</h2><p>' + esc(p.pair) + '</p></div>' : '') +
+        '</section>' +
+        '<aside class="check" aria-label="Visitor checklist"><h2>Visitor checklist</h2><dl>' + checks + '</dl>' +
+          (p.mapUrl ? '<a class="btn-map" href="' + esc(p.mapUrl) + '" target="_blank" rel="noopener">Open in Naver Map</a>' : '') +
+          '<p class="stamp">Last checked: ' + esc(p.lastChecked || '') + ' · #seoulooho</p>' +
+        '</aside>' +
+      '</div>' +
+      '<footer class="p-foot">' + brand() + '</footer>' +
+      '</div>';
+    document.title = p.name + ' — ' + SITE.name;
+  }
+
+  /* ---------- Router & events ---------- */
+  function route() {
+    var parts = location.hash.replace(/^#\/?/, '').split('/');
+    if (parts[0] === 'district' && DIST[parts[1]]) {
+      renderDistrict(DIST[parts[1]]);
+    } else if (parts[0] === 'place' && PLACE[parts[1]]) {
+      var p = PLACE[parts[1]];
+      if (p.guide) { renderPlace(p); } else { renderDistrict(DIST[p.district]); }
+    } else {
+      renderHome();
+    }
+    window.scrollTo(0, 0);
+  }
+
+  app.addEventListener('click', function (e) {
+    var el = e.target.closest('[data-action]');
+    if (!el) return;
+    var a = el.getAttribute('data-action');
+    if (a === 'cat') { state.cat = el.getAttribute('data-cat'); renderHome(); }
+    else if (a === 'district') {
+      var id = el.getAttribute('data-id');
+      state.district = state.district === id ? null : id;
+      if (state.district && !state.panelOpen) { state.panelOpen = true; savePanel(); }  // show what was picked
+      renderHome();
+    }
+    else if (a === 'toggle-panel') {
+      state.panelOpen = !state.panelOpen; savePanel(); renderHome();
+      var next = document.querySelector('[data-action="toggle-panel"]'); if (next) next.focus();
+    }
+    else if (a === 'clear') { state.district = null; renderHome(); }
+    else if (a === 'jump') {
+      var t = document.getElementById(el.getAttribute('data-target'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body>
+</html>
