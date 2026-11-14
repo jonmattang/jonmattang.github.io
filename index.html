@@ -880,7 +880,7 @@ var PLACES = [
           '<div class="gallery">' + photos + '</div>' +
         '</section>' +
         '<section class="p-mid" aria-label="Menu and review">' +
-          (p.take && p.take.length ? '<div class="take"><h2>' + esc(p.takeTitle || 'JMT’s bite') + '</h2>' + p.take.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' : '') +
+          (p.take && p.take.length ? '<div class="take"><h2>' + esc(p.takeTitle || 'JMT’s comment') + '</h2>' + p.take.map(function (t) { return '<p>' + esc(t) + '</p>'; }).join('') + '</div>' : '') +
           (rows ? '<div><h2>' + esc(p.menuTitle || 'What to order') + '</h2><div class="tbl-box"><table>' +
             '<thead><tr><th scope="col">Menu</th><th scope="col">What it is</th><th scope="col">Price</th></tr></thead>' +
             '<tbody>' + rows + '</tbody></table></div></div>' : '') +
